@@ -157,7 +157,7 @@ const HomePage = () => {
       <img src={homecoupon} alt='coupon' style={{width :'1419px', height:'217px'}} />
     </Box>
     <Box display='flex' >
-      <img src={festivedays1}  alt="festivedays" style={{width :'760px', height:'451px'}}/>
+      <img src={festivedays1}  alt="festivedays" style={{width :'760px', height:'auto'}}/>
       <img src={festivedays2} alt="festivedays" style={{width :'760px', height:'451px'}}/>
     </Box>
     <Box >
