@@ -15,6 +15,7 @@ import { CheckBoxOutlineBlankOutlined } from '@mui/icons-material';
 const Bag = () => {
 
   const [cartData, setCartData] = useState([])
+  const [orderPlaced, setOrderPlaced] = useState(false);
 
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem('cartItems') ?? '[]')
@@ -28,7 +29,26 @@ const Bag = () => {
     setCartData(updatedCart)
   }
 
+  const handlePlaceOrder = () => {
+    setOrderPlaced(true);
+    setTimeout(() => {
+      window.location.reload();
+    },5000);
+    localStorage.removeItem('cartItems');
+  };
 
+  if (orderPlaced) {
+    return (
+      <Box sx={{ textAlign: 'center', padding: '50px' }}>
+        <Typography variant="h4" sx={{ marginBottom: '20px' }}>
+          Thanks for shopping with us!
+        </Typography>
+        <Typography variant="body1">
+          Your order has been placed successfully.
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
     <>
@@ -187,8 +207,20 @@ const Bag = () => {
           <Typography sx={{fontSize:'15px', fontWeight:'700'}}>Total Amount</Typography>
           <Typography sx={{fontSize :'15px', fontWeight:'700'}}>₹1,496</Typography> 
         </Stack>
-        <Button sx={{backgroundColor:'#FF3F6C',width:'100%',borderRadius:'2px', fontWeight:'700', color : 'white',fontSize :'14px',padding:'10px 16px'}} >PLACE ORDER</Button>
-      </Box>
+        <Button
+              variant='contained'
+              onClick={handlePlaceOrder}
+              sx={{
+                width: '100%',
+                backgroundColor: '#ff3f6c',
+                marginTop: '16px',
+                '&:hover': {
+                  backgroundColor: '#ff3f6c'
+                }
+              }}
+            >
+              PLACE ORDER
+            </Button>      </Box>
     </Card>
     </Box>
     {/* </Stack> */}
